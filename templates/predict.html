@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Predict Salary</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="predict-bg">
+  <div class="container mt-5 animate-slide-in">
+    <h2 class="mb-4">💵 Predict Your Salary</h2>
+    <form method="POST" action="/predict" class="animate-fade-in-delayed">
+      <div class="form-group">
+        <label>Years of Experience:</label>
+        <input type="number" step="0.1" class="form-control" name="experience" placeholder="Enter years of experience" required>
+      </div>
+      <div class="form-group">
+        <label>Age:</label>
+        <input type="number" class="form-control" name="age" placeholder="Enter your age" required>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <select name="gender" class="form-control" required>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Education:</label>
+        <select name="education" class="form-control" required>
+          <option value="" disabled selected>Select Education</option>
+          <option value="Bachelors">Bachelors</option>
+          <option value="Masters">Masters</option>
+          <option value="PhD">PhD</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Job Title:</label>
+        <select name="job" class="form-control" required>
+          <option value="" disabled selected>Select Job Title</option>
+          <option value="Data Scientist">Data Scientist</option>
+          <option value="Software Engineer">Software Engineer</option>
+          <option value="Project Manager">Project Manager</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success animate-pulse">Predict</button>
+    </form>
+
+    {% if salary is defined %}
+    <div class="result mt-4 animate-fade-in-delayed">
+      <h4>Predicted Salary: ₹{{ salary }}</h4>
+      <a href="/" class="btn btn-outline-primary mt-3">Back to Home</a>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
