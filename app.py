@@ -1,18 +1,14 @@
 from flask import Flask, render_template, request
 import pickle
 import pandas as pd
-
 app = Flask(__name__)
 model = pickle.load(open('salary_model.pkl', 'rb'))
-
 @app.route('/')
 def home():
     return render_template('index.html')
-
 @app.route('/predict_form')
 def predict_form():
     return render_template('predict.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
     years = float(request.form['experience'])
@@ -20,7 +16,6 @@ def predict():
     gender = request.form['gender']
     education = request.form['education']
     job = request.form['job']
-
     input_df = pd.DataFrame({
         'YearsExperience': [years],
         'Age': [age],
